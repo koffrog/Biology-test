@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="kk">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -10,58 +12,88 @@
 
 </head>
 
+
 <body>
+
 
 <div class="container">
 
+
 <h1>🧬 Biology Test</h1>
-<p>Биология бойынша дайындық</p>
+
+<p>Биология емтиханына дайындық</p>
 
 
-<div class="menu">
 
-<button onclick="startTest()">Тест бастау</button>
+<!-- ГЛАВНОЕ МЕНЮ -->
+
+<div class="menu" id="menu">
+
+
+<button onclick="startTest()">
+📝 Тест бастау
+</button>
+
 
 <button onclick="showErrors()">
 ❌ Менің қателерім
 </button>
 
+
 <button onclick="showFavorites()">
-⭐ Таңдаулылар
+⭐ Таңдаулы сұрақтар
 </button>
+
 
 </div>
 
 
-<div class="settings">
 
-<label>Тақырып:</label>
+
+
+<!-- НАСТРОЙКИ -->
+
+
+<div class="settings" id="settings">
+
+
+<label>
+Тақырыпты таңда:
+</label>
+
 
 <select id="topic">
 
+
 <option value="all">
-Барлығы
+Барлық тақырыптар
 </option>
+
 
 <option value="Анатомия">
-Анатомия
+🫀 Анатомия
 </option>
+
 
 <option value="Генетика">
-Генетика
+🧬 Генетика
 </option>
+
 
 <option value="Ботаника">
-Ботаника
+🌱 Ботаника
 </option>
+
 
 <option value="Цитология">
-Цитология
+🔬 Цитология
 </option>
 
+
 <option value="Экология">
-Экология
+🌍 Экология
 </option>
+
 
 </select>
 
@@ -69,10 +101,18 @@
 </div>
 
 
+
+
+
+
+<!-- ТЕСТ -->
+
+
 <div id="test" class="hidden">
 
 
 <div class="top">
+
 
 <span id="progress">
 0/100
@@ -87,7 +127,10 @@
 </div>
 
 
+
+
 <div class="question-box">
+
 
 <h2 id="question">
 </h2>
@@ -97,6 +140,7 @@
 </div>
 
 
+
 <div id="explanation">
 </div>
 
@@ -104,22 +148,87 @@
 </div>
 
 
-<button id="next" onclick="nextQuestion()">
+
+
+<button id="next"
+onclick="nextQuestion()">
+
 Келесі сұрақ →
+
 </button>
 
 
+
 </div>
+
+
+
+
+
+
+
+
+<!-- РЕЗУЛЬТАТ -->
 
 
 <div id="result" class="hidden">
 
-<h2>Нәтиже</h2>
 
-<p id="resultText"></p>
+<h2>
+🎉 Нәтиже
+</h2>
+
+
+<p id="resultText">
+
+</p>
+
 
 <button onclick="startTest()">
+
 Қайта бастау
+
+</button>
+
+
+
+<button onclick="location.reload()">
+
+Басты бет
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- ОШИБКИ -->
+
+
+<div id="errorPage" class="hidden">
+
+
+<h2>
+❌ Менің қателерім
+</h2>
+
+
+<div id="errorList">
+
+</div>
+
+
+<button onclick="location.reload()">
+
+Артқа
+
 </button>
 
 
@@ -127,12 +236,52 @@
 
 
 
+
+
+
+
+
+<!-- ИЗБРАННОЕ -->
+
+
+<div id="favoritePage" class="hidden">
+
+
+<h2>
+⭐ Таңдаулы сұрақтар
+</h2>
+
+
+<div id="favoriteList">
+
 </div>
 
 
+
+<button onclick="location.reload()">
+
+Артқа
+
+</button>
+
+
+</div>
+
+
+
+
+
+
+</div>
+
+
+
 <script src="questions.js"></script>
+
 <script src="script.js"></script>
 
 
 </body>
+
+
 </html>
