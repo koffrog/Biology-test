@@ -595,12 +595,4 @@ question: "Биология нені зерттейді?",
 answers: ["Ғарышты", "Тірі ағзаларды", "Жер қыртысын", "Ауа райын"],
 correct: 1
 }
-];let current = 0;
-let score = 0;
-
-const question = document.getElementById("question");
-const answers = document.getElementById("answers");
-const nextBtn = document.getElementById("nextBtn");
-const result = document.getElementById("result");
-
-// дальше функции loadQuestion(), checkAnswer() и т.д.
+];
