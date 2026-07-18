@@ -1,37 +1,138 @@
 <!DOCTYPE html>
 <html lang="kk">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biology Test</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="style.css">
+<title>Biology Test</title>
+
+<link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
 
 <div class="container">
 
-    <h1>🧬 Биология тесттері</h1>
+<h1>🧬 Biology Test</h1>
+<p>Биология бойынша дайындық</p>
 
-    <div class="card">
 
-        <h2 id="question">
-            Сұрақ жүктелуде...
-        </h2>
+<div class="menu">
 
-        <div id="answers"></div>
+<button onclick="startTest()">Тест бастау</button>
 
-        <button id="nextBtn">
-            Келесі сұрақ →
-        </button>
+<button onclick="showErrors()">
+❌ Менің қателерім
+</button>
 
-        <div id="result"></div>
-
-    </div>
+<button onclick="showFavorites()">
+⭐ Таңдаулылар
+</button>
 
 </div>
 
+
+<div class="settings">
+
+<label>Тақырып:</label>
+
+<select id="topic">
+
+<option value="all">
+Барлығы
+</option>
+
+<option value="Анатомия">
+Анатомия
+</option>
+
+<option value="Генетика">
+Генетика
+</option>
+
+<option value="Ботаника">
+Ботаника
+</option>
+
+<option value="Цитология">
+Цитология
+</option>
+
+<option value="Экология">
+Экология
+</option>
+
+</select>
+
+
+</div>
+
+
+<div id="test" class="hidden">
+
+
+<div class="top">
+
+<span id="progress">
+0/100
+</span>
+
+
+<span id="score">
+Дұрыс: 0
+</span>
+
+
+</div>
+
+
+<div class="question-box">
+
+<h2 id="question">
+</h2>
+
+
+<div id="answers">
+</div>
+
+
+<div id="explanation">
+</div>
+
+
+</div>
+
+
+<button id="next" onclick="nextQuestion()">
+Келесі сұрақ →
+</button>
+
+
+</div>
+
+
+<div id="result" class="hidden">
+
+<h2>Нәтиже</h2>
+
+<p id="resultText"></p>
+
+<button onclick="startTest()">
+Қайта бастау
+</button>
+
+
+</div>
+
+
+
+</div>
+
+
+<script src="questions.js"></script>
 <script src="script.js"></script>
+
 
 </body>
 </html>
