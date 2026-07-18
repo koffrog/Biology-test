@@ -1,11 +1,13 @@
 let current = 0;
 let score = 0;
 
+let testQuestions = [];
+
 let mistakes = JSON.parse(localStorage.getItem("mistakes")) || [];
 let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
-let testQuestions = [];
 let answered = false;
+
 
 
 const question = document.getElementById("question");
@@ -19,26 +21,19 @@ const explanation = document.getElementById("explanation");
 
 const test = document.getElementById("test");
 const result = document.getElementById("result");
+
 const resultText = document.getElementById("resultText");
 
 
 
-// Тест бастау
+
+// НАЧАТЬ ТЕСТ
+
 function startTest(){
 
-    let topic = document.getElementById("topic").value;
+    testQuestions = [...questions];
 
-
-    if(topic === "all"){
-        testQuestions = [...questions];
-    }
-
-    else{
-        testQuestions = questions.filter(q => q.topic === topic);
-    }
-
-
-    // случайный порядок
+    // перемешивание вопросов
     testQuestions.sort(() => Math.random() - 0.5);
 
 
@@ -46,90 +41,112 @@ function startTest(){
     score = 0;
 
 
-    document.querySelector(".menu").style.display="none";
-    document.querySelector(".settings").style.display="none";
+    document.getElementById("menu")
+    .classList.add("hidden");
+
+
+    document.getElementById("settings")
+    .classList.add("hidden");
+
 
     result.classList.add("hidden");
+
     test.classList.remove("hidden");
 
 
     loadQuestion();
+
 }
 
 
 
-// загрузка вопроса
+
+// ЗАГРУЗКА ВОПРОСА
 
 function loadQuestion(){
 
     answered = false;
 
-    explanation.innerHTML = "";
-
     nextBtn.style.display="none";
+
+    explanation.innerHTML="";
 
 
     let q = testQuestions[current];
 
 
     question.innerHTML =
-    (current + 1) + ". " + q.question;
+    `${current+1}. ${q.question}`;
 
 
     progress.innerHTML =
-    `${current + 1}/${testQuestions.length}`;
+    `${current+1}/${testQuestions.length}`;
 
 
     scoreText.innerHTML =
     `Дұрыс: ${score}`;
 
 
-
     answers.innerHTML="";
+
 
 
     q.answers.forEach((answer,index)=>{
 
 
-        let button=document.createElement("button");
-
-        button.className="answer";
-
-        button.innerHTML=answer;
+        let btn=document.createElement("button");
 
 
-        button.onclick=()=>checkAnswer(index);
+        btn.className="answer";
 
 
-        answers.appendChild(button);
+        btn.innerHTML=answer;
+
+
+        btn.onclick=function(){
+
+            checkAnswer(index);
+
+        };
+
+
+        answers.appendChild(btn);
+
 
     });
 
 
 
-    // избранное
+    let star=document.createElement("button");
 
-    let fav=document.createElement("button");
+    star.innerHTML="⭐";
 
-    fav.innerHTML="⭐";
-
-    fav.className="favorite";
+    star.className="favorite";
 
 
-    fav.onclick=()=>addFavorite(q);
+    star.onclick=function(){
+
+        addFavorite(q);
+
+    };
 
 
-    answers.appendChild(fav);
+    answers.appendChild(star);
+
 
 }
 
 
 
-// проверка ответа
+
+
+// ПРОВЕРКА ОТВЕТА
 
 function checkAnswer(index){
 
+
     if(answered) return;
+
 
     answered=true;
 
@@ -141,25 +158,31 @@ function checkAnswer(index){
 
 
     buttons.forEach(btn=>{
+
         btn.disabled=true;
+
     });
 
 
 
-    if(index === q.correct){
+    if(index===q.correct){
+
 
         score++;
+
 
         buttons[index].style.background="#8bc34a";
 
 
-        explanation.innerHTML =
+        explanation.innerHTML=
         "✅ Дұрыс жауап!";
 
 
     }
 
+
     else{
+
 
         buttons[index].style.background="#ff6b6b";
 
@@ -167,18 +190,18 @@ function checkAnswer(index){
         buttons[q.correct].style.background="#8bc34a";
 
 
-        explanation.innerHTML =
-        "❌ Қате жауап.<br>" +
-        "Дұрыс жауап: " +
-        q.answers[q.correct];
+        explanation.innerHTML=
+        "❌ Қате! Дұрыс жауап: "
+        + q.answers[q.correct];
 
 
         saveMistake(q);
 
+
     }
 
 
-    scoreText.innerHTML =
+    scoreText.innerHTML=
     `Дұрыс: ${score}`;
 
 
@@ -190,7 +213,8 @@ function checkAnswer(index){
 
 
 
-// следующий вопрос
+
+// СЛЕДУЮЩИЙ ВОПРОС
 
 function nextQuestion(){
 
@@ -215,12 +239,14 @@ function nextQuestion(){
 
 
 
-// результат
+
+// РЕЗУЛЬТАТ
 
 function finishTest(){
 
 
     test.classList.add("hidden");
+
 
     result.classList.remove("hidden");
 
@@ -231,15 +257,16 @@ function finishTest(){
     );
 
 
-    resultText.innerHTML =
+    resultText.innerHTML=
+
     `
-    Сенің нәтижең:<br><br>
+    Барлық сұрақ: ${testQuestions.length}<br><br>
 
-    ✅ Дұрыс: ${score}<br>
+    ✅ Дұрыс жауап: ${score}<br>
 
-    ❌ Қате: ${testQuestions.length-score}<br>
+    ❌ Қате жауап: ${testQuestions.length-score}<br><br>
 
-    📊 Процент: ${percent}%
+    📊 Нәтиже: ${percent}%
 
     `;
 
@@ -248,9 +275,11 @@ function finishTest(){
 
 
 
-// ошибки
+
+// СОХРАНЕНИЕ ОШИБОК
 
 function saveMistake(q){
+
 
     let exists =
     mistakes.some(
@@ -261,6 +290,7 @@ function saveMistake(q){
     if(!exists){
 
         mistakes.push(q);
+
 
         localStorage.setItem(
             "mistakes",
@@ -274,21 +304,27 @@ function saveMistake(q){
 
 
 
+
+// ПОКАЗАТЬ ОШИБКИ
+
 function showErrors(){
+
 
     alert(
     "Қате сұрақтар саны: "
     + mistakes.length
     );
 
+
 }
 
 
 
 
-// избранное
+// ДОБАВИТЬ В ИЗБРАННОЕ
 
 function addFavorite(q){
+
 
     let exists =
     favorites.some(
@@ -297,6 +333,7 @@ function addFavorite(q){
 
 
     if(!exists){
+
 
         favorites.push(q);
 
@@ -307,8 +344,26 @@ function addFavorite(q){
         );
 
 
-        alert("⭐ Таңдаулыларға қосылды");
+        alert("⭐ Сұрақ сақталды");
+
 
     }
+
+
+}
+
+
+
+
+// ПОКАЗАТЬ ИЗБРАННОЕ
+
+function showFavorites(){
+
+
+    alert(
+    "⭐ Таңдаулы сұрақтар: "
+    + favorites.length
+    );
+
 
 }
