@@ -4,6 +4,7 @@
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Biology Test</title>
@@ -25,7 +26,7 @@
 
 
 
-<!-- ГЛАВНОЕ МЕНЮ -->
+<!-- Главное меню -->
 
 <div class="menu" id="menu">
 
@@ -51,51 +52,17 @@
 
 
 
-<!-- НАСТРОЙКИ -->
-
+<!-- Настройки -->
 
 <div class="settings" id="settings">
 
 
-<label>
-Тақырыпты таңда:
-</label>
+<h3>Тест режимі</h3>
 
 
-<select id="topic">
-
-
-<option value="all">
-Барлық тақырыптар
-</option>
-
-
-<option value="Анатомия">
-🫀 Анатомия
-</option>
-
-
-<option value="Генетика">
-🧬 Генетика
-</option>
-
-
-<option value="Ботаника">
-🌱 Ботаника
-</option>
-
-
-<option value="Цитология">
-🔬 Цитология
-</option>
-
-
-<option value="Экология">
-🌍 Экология
-</option>
-
-
-</select>
+<p>
+100 сұрақ кездейсоқ беріледі
+</p>
 
 
 </div>
@@ -105,7 +72,7 @@
 
 
 
-<!-- ТЕСТ -->
+<!-- Тест -->
 
 
 <div id="test" class="hidden">
@@ -133,25 +100,29 @@
 
 
 <h2 id="question">
+
 </h2>
 
 
+
 <div id="answers">
+
 </div>
 
 
 
 <div id="explanation">
-</div>
-
 
 </div>
 
 
+</div>
 
 
-<button id="next"
-onclick="nextQuestion()">
+
+
+
+<button id="next" onclick="nextQuestion()">
 
 Келесі сұрақ →
 
@@ -168,20 +139,23 @@ onclick="nextQuestion()">
 
 
 
-<!-- РЕЗУЛЬТАТ -->
+
+<!-- Результат -->
 
 
 <div id="result" class="hidden">
 
 
 <h2>
-🎉 Нәтиже
+🎉 Тест аяқталды!
 </h2>
+
 
 
 <p id="resultText">
 
 </p>
+
 
 
 <button onclick="startTest()">
@@ -199,73 +173,9 @@ onclick="nextQuestion()">
 </button>
 
 
-
 </div>
 
 
-
-
-
-
-
-
-<!-- ОШИБКИ -->
-
-
-<div id="errorPage" class="hidden">
-
-
-<h2>
-❌ Менің қателерім
-</h2>
-
-
-<div id="errorList">
-
-</div>
-
-
-<button onclick="location.reload()">
-
-Артқа
-
-</button>
-
-
-</div>
-
-
-
-
-
-
-
-
-<!-- ИЗБРАННОЕ -->
-
-
-<div id="favoritePage" class="hidden">
-
-
-<h2>
-⭐ Таңдаулы сұрақтар
-</h2>
-
-
-<div id="favoriteList">
-
-</div>
-
-
-
-<button onclick="location.reload()">
-
-Артқа
-
-</button>
-
-
-</div>
 
 
 
@@ -282,6 +192,5 @@ onclick="nextQuestion()">
 
 
 </body>
-
 
 </html>
